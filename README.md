@@ -24,6 +24,7 @@
 3) Make sure you have a .chef directory in the project directory of this cookbook
    with the the "knife.rb" and "jasondebolt.pem" files found in "https://manage.chef.io/organizations/jasondebolt":
 
+```
    personal_cookbooks/.chef
    ├── jasondebolt.pem
    └── knife.rb
@@ -31,6 +32,7 @@
    ├── README.md
    ├── Vagrantfile
    ...
+```
 
 4) Bootstrap the instances (make sure ports, paths, and names match output of "vagrant ssh-config"). For example:
 
