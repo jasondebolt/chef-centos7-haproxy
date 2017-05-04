@@ -1,5 +1,18 @@
 # chef-centos7-haproxy
 
+0) Running kitchen tests
+
+   Since the kitchen tests I wrote simply check that haproxy was installed
+   and configured correctly, the test kitchen vagrant instance is not actually
+   load balancing any nodes because the kitchen tests do not spin up any
+   web nodes (web1 and web2). If you want the test kitchen haproxy instance
+   to actually load balancer the web nodes, walk through steps 1 through 7 of
+   this document and the test kitchen instance will be able to see/load-balance
+   them.
+
+   2) $ kitchen converge
+   3) $ kitchen verify
+
 1) Start up the 3 vagrant instances
   $ vagrant up
 

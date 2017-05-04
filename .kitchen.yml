@@ -21,6 +21,7 @@ provisioner:
 verifier:
   name: inspec
 
+# load balaancer vagrant instance
 platforms:
   - name: centos-7.2
     driver:
@@ -36,10 +37,9 @@ platforms:
 #      ssh_key: ~/keys/JasonOregonKeyPair.pem
 
 suites:
-  - name: default
+  - name: haproxy
     run_list:
       - recipe[chef-centos7-haproxy::default]
     verifier:
       inspec_tests:
         - test/recipes
-    attributes:
