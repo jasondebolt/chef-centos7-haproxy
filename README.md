@@ -10,16 +10,22 @@
    this document and the test kitchen instance will be able to see/load-balance
    them.
 
-   2) $ kitchen converge
-   3) $ kitchen verify
+```
+   $ kitchen converge
+   $ kitchen verify
+```
 
 1) Start up the 3 vagrant instances
+```
   $ vagrant up
+```
 
 2) Verify they are running
+```
   $ vagrant global-status
   $ vagrant ssh-config
   $ vagrant ssh web1
+```
 
 3) Make sure you have a .chef directory in the project directory of this cookbook
    with the the "knife.rb" and "jasondebolt.pem" files found in "https://manage.chef.io/organizations/jasondebolt":
@@ -38,20 +44,25 @@
 
    NOTE: You can also add the --run-list flag to set the appropriate run list for each node (allowing you to skip the following 2 steps.)
 
+```
    $ knife bootstrap localhost --ssh-port 2222 --ssh-user vagrant --sudo --identity-file /Users/jasondebolt/chef-repo/.vagrant/machines/web1/virtualbox/private_key -N web1
 
    $ knife bootstrap localhost --ssh-port 2200 --ssh-user vagrant --sudo --identity-file /Users/jasondebolt/chef-repo/.vagrant/machines/web2/virtualbox/private_key -N web2
 
    $ knife bootstrap localhost --ssh-port 2201 --ssh-user vagrant --sudo --identity-file /Users/jasondebolt/chef-repo/.vagrant/machines/load-balancer/virtualbox/private_key -N load-balancer
+```
 
 5) Add the appropriate runlists to each chef node:
 
+```
    $ knife node run_list add web1 "recipe[chef-centos7-httpd]"
    $ knife node run_list add web2 "recipe[chef-centos7-httpd]"
    $ knife node run_list add load-balancer "recipe[chef-centos7-haproxy]"
+```
 
 6) Run 'sudo chef-client' on each node.
 
+```
    $ vagrant ssh web1
    $ sudo chef chef-client
    $ curl localhost --> run this within the vagrant instance to see the HTML output.
@@ -61,6 +72,7 @@
 
    $ vagrant ssh load-balancer
    $ sudo chef chef-client
+```
 
 7) After you've successfully the recipes on the nodes (either during bootstrap or by manually running chef-client),
    you can go to your browser and open 'localhost:9000'. You will see that the web1 and web2 HTML pages are alternately
@@ -69,8 +81,10 @@
 
 8) Other commands:
 
+```
   $ knife node list
   $ knife node show web1
+```
 
 NOTES:
    If you want to change a recipe in this cookbook, make sure you change the version number
