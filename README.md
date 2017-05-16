@@ -31,10 +31,10 @@
    with the the "knife.rb" and "jasondebolt.pem" files found in "https://manage.chef.io/organizations/jasondebolt":
 
 ```
-   personal_cookbooks/.chef
+   personal-cookbooks/.chef
    ├── jasondebolt.pem
    └── knife.rb
-   personal_cookbooks/cookbooks/chef-centos7-haproxy
+   personal-cookbooks/cookbooks/chef-centos7-haproxy
    ├── README.md
    ├── Vagrantfile
    ...
